@@ -33,7 +33,9 @@ public class BetLineResource {
     private Template index;
 
     @Inject
-    BetLineRepository repository;
+    private BetLineRepository repository;
+
+    public static URI indexUri = URI.create("/crud");
 
     @GET
     @Produces(MediaType.TEXT_HTML)
@@ -46,8 +48,29 @@ public class BetLineResource {
     }
 
     @POST
+    @Path("/delete/{id}")
+    public RestResponse<String> delete(@PathParam("id") Long id) {
+        repository.delete(id);
+        return RestResponse.seeOther(indexUri);
+    }
+
+    @POST
+    @Path("/update/{id}")
+    public RestResponse<String> update(@PathParam("id") Long id,
+            @FormParam("team1") String team1,
+            @FormParam("team2") String team2,
+            @FormParam("win1") Double win1,
+            @FormParam("draw") Double draw,
+            @FormParam("win2") Double win2
+
+    ) {
+        repository.update(id, team1, team2, win1, draw, win2);
+        return RestResponse.seeOther(indexUri);
+    }
+
+    @POST
     @Path("/create")
-    @Produces(MediaType.APPLICATION_FORM_URLENCODED)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public RestResponse<String> create(
             @FormParam("team1") String team1,
             @FormParam("team2") String team2,
@@ -56,6 +79,6 @@ public class BetLineResource {
             @FormParam("win2") Double win2
     ) {
         repository.create(team1, team2, win1, draw, win2);
-        return RestResponse.seeOther(URI.create("/crud"));
+        return RestResponse.seeOther(indexUri);
     }
 }
