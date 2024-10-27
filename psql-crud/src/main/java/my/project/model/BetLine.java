@@ -1,6 +1,7 @@
 package my.project.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.PersistenceUnit;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,10 +19,10 @@ public class BetLine {
     private Double win1;
     private Double draw;
     private Double win2;
-//    private Boolean update;
+    private Boolean deleted;
 
-    //private LocalDateTime created;
-    //private LocalDateTime updated;
+    private LocalDateTime created;
+    private LocalDateTime updated;
 
     public void setId(Long id) {
         this.id = id;
@@ -47,17 +48,17 @@ public class BetLine {
         this.win2 = win2;
     }
 
-//    public void setUpdate(Boolean update) {
-//        this.update = update;
-//    }
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
 
-//    public void setCreated(LocalDateTime created) {
-//        this.created = created;
-//    }
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
 
-//    public void setUpdated(LocalDateTime updated) {
-//        this.updated = updated;
-//    }
+    public void setUpdated(LocalDateTime updated) {
+        this.updated = updated;
+    }
 
     public Long getId() {
         return id;
@@ -83,15 +84,15 @@ public class BetLine {
         return win2;
     }
 
-//    public Boolean getUpdate() {
-//        return update;
-//    }
+    public Boolean getDeleted() {
+        return deleted;
+    }
 
-//    public LocalDateTime getCreated() {
-//        return created;
-//    }
+    public LocalDateTime getCreated() {
+        return created;
+    }
 
-//    public LocalDateTime getUpdated() {
-//        return updated;
-//    }
+    public LocalDateTime getUpdated() {
+        return updated;
+    }
 }

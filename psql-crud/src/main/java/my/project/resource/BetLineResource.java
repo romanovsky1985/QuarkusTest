@@ -26,6 +26,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import io.quarkus.panache.common.Sort;
+
 @Path("/crud")
 public class BetLineResource {
     @Inject
@@ -41,7 +43,9 @@ public class BetLineResource {
     @Produces(MediaType.TEXT_HTML)
     public String getIndex() throws TemplateException, IOException {
         Map<String, Object> pageMap = new HashMap<>();
-        pageMap.put("lines", repository.listAll());
+
+
+        pageMap.put("lines", repository.list("deleted", Sort.ascending("id"), Boolean.FALSE));
         StringWriter pageWriter = new StringWriter();
         index.process(pageMap, pageWriter);
         return pageWriter.toString();

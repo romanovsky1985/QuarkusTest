@@ -16,7 +16,10 @@ public class BetLineRepository implements PanacheRepository<BetLine> {
 
     @Transactional
     public void delete(Long id) {
-        deleteById(id);
+        BetLine betLine = findById(id);
+        betLine.setUpdated(LocalDateTime.now());
+        betLine.setDeleted(true);
+        persist(betLine);
     }
 
     @Transactional
@@ -27,6 +30,7 @@ public class BetLineRepository implements PanacheRepository<BetLine> {
         betLine.setWin1(win1);
         betLine.setDraw(draw);
         betLine.setWin2(win2);
+        betLine.setUpdated(LocalDateTime.now());
         persist(betLine);
     }
 
@@ -38,7 +42,8 @@ public class BetLineRepository implements PanacheRepository<BetLine> {
         betLine.setWin1(win1);
         betLine.setDraw(draw);
         betLine.setWin2(win2);
-//        betLine.setCreated(LocalDateTime.now());
+        betLine.setDeleted(false);
+        betLine.setCreated(LocalDateTime.now());
         persist(betLine);
     }
 
