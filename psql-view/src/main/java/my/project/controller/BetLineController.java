@@ -33,7 +33,7 @@ public class BetLineController {
     @GET
     @Produces(MediaType.TEXT_HTML)
     public String getIndex() throws TemplateException, IOException {
-        List<BetLine> lines = entityManager.createQuery("SELECT b FROM BetLine b ORDER BY id").getResultList();
+        List<BetLine> lines = entityManager.createQuery("SELECT b FROM BetLine b WHERE b.deleted = false ORDER BY id").getResultList();
         Map<String, Object> pageMap = new HashMap<>();
         pageMap.put("lines", lines);
         StringWriter pageWriter = new StringWriter();
