@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Origin DB</title>
+</head>
+<body>
+  <h1>ORIGIN DB</h1>
+  <hr>
+  <form method="POST">
+    <input type="text" placeholder="team1" name="team1" value="" autocomplete="off">
+    <input type="text" placeholder="team2" name="team2" value="" autocomplete="off">
+    <input type="number" placeholder="win1" name="win1" value="2.5" step="0.01" autocomplete="off">
+    <input type="number" placeholder="draw" name="draw" value="3.0" step="0.01" autocomplete="off">
+    <input type="number" placeholder="win2" name="win2" value="2.5" step="0.01" autocomplete="off">
+    <button formaction="/origin/create">Добавить</button>
+  </form>
+  <hr>
+  <form method="POST">
+    <input type="number" placeholder="count" name="count" value="100" autocomplete="off">
+    <button formaction="/origin/generate">Сгенерировать</button>
+    <button formaction="/origin/clear">Удалить все</button>
+  </form>
+  <hr>
+  {#for line in lines}
+  <form method="POST">
+    <input type="text" name="team1" value="{line.team1}" autocomplete="off">
+    <input type="text" name="team2" value="{line.team2}" autocomplete="off">
+    <input type="number" name="win1" value="{line.win1}" step="0.01" autocomplete="off">
+    <input type="number" name="draw" value="{line.draw}" step="0.01" autocomplete="off">
+    <input type="number" name="win2" value="{line.win2}" step="0.01" autocomplete="off">
+    <button formaction="/origin/update/{line.id}">Изменить</button>
+    <button formaction="/origin/delete/{line.id}">Удалить</button>
+  </form>
+  {/for}
+</body>
+</html>
