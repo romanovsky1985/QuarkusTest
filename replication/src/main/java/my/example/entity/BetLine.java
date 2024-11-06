@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import io.quarkus.hibernate.orm.PersistenceUnit;
 
 @Entity
 public class BetLine {
