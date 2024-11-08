@@ -1,9 +1,7 @@
 package my.example.repository;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.transaction.Transactional;
 import my.example.entity.BetLine;
-import jakarta.persistence.EntityManager;
 import jakarta.inject.Inject;
 import org.hibernate.StatelessSession;
 import io.quarkus.hibernate.orm.PersistenceUnit;

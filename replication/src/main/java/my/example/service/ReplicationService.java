@@ -1,8 +1,6 @@
 package my.example.service;
 
-import io.quarkus.hibernate.orm.PersistenceUnit;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
 import my.example.entity.BetLine;
 import org.hibernate.StatelessSession;
 
@@ -15,6 +13,7 @@ import java.util.HashMap;
 public class ReplicationService {
 
     public Map<String, Number> replicate(StatelessSession origin, StatelessSession replicant) {
+        long time = System.currentTimeMillis();
         Map<String, Number> result = new HashMap<>();
         LocalDateTime maxCreated = replicant
                 .createQuery("select max(b.created) from BetLine b", LocalDateTime.class)
@@ -52,6 +51,8 @@ public class ReplicationService {
             replicant.update(line);
         }
         result.put("updated", updatedLines.size());
+        time = System.currentTimeMillis() - time;
+        result.put("ms", time);
         return result;
     }
 

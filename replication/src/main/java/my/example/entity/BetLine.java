@@ -52,7 +52,7 @@ public class BetLine {
     }
 
     public Double getWin1() {
-        return win1;
+        return (int)(win1 * 100) / 100.;
     }
 
     public void setWin1(Double win1) {
@@ -60,7 +60,7 @@ public class BetLine {
     }
 
     public Double getDraw() {
-        return draw;
+        return (int)(draw * 100) / 100.;
     }
 
     public void setDraw(Double draw) {
@@ -68,7 +68,7 @@ public class BetLine {
     }
 
     public Double getWin2() {
-        return win2;
+        return (int)(win2 * 100) / 100.;
     }
 
     public void setWin2(Double win2) {
@@ -127,9 +127,9 @@ public class BetLine {
         }
         line.setTeam1(teams.get(i));
         line.setTeam2(teams.get(j));
-        line.setWin1(1.0 + 2.0 * (random.nextInt(100) / 100.0));
-        line.setDraw(3.0 + random.nextInt(100) / 100.0);
-        line.setWin2(1.0 + 2.0 * (random.nextInt(100) / 100.0));
+        line.setWin1(1.5 + random.nextDouble(2.0));
+        line.setDraw(3.0 + random.nextDouble(1.0));
+        line.setWin2(1.5 + random.nextDouble(2.0));
         return line;
     }
 }
